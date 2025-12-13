@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GoodTaste Restaurant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<!-- <nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <span class="navbar-brand mb-0 h1">Foodie's Hub</span>
+    </div>
+</nav> -->
+
+<!-- Header -->
+<header class="menu-header text-center text-white">
+    <div class="container">
+        <h1>GoodTaste Restaurant</h1>
+        <p>Our Menu</p>
+    </div>
+</header>
+
+<!-- Menu Section -->
+<section class="menu-section py-4">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- Menu Item -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="menu-card">
+                    <img src="images/fast-moving-items.jpg" alt="Dessert" class="menu-img" data-bs-toggle="modal" data-bs-target="#imgModal" onclick="showImage(this)">
+                    <h5>Fast-Moving Items</h5>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="menu-card">
+                    <img src="images/group-meals.jpg" alt="Pizza" class="menu-img" data-bs-toggle="modal" data-bs-target="#imgModal" onclick="showImage(this)">
+                    <h5>Group Meals</h5>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="menu-card">
+                    <img src="images/combo-meals.jpg" alt="Burger" class="menu-img" data-bs-toggle="modal" data-bs-target="#imgModal" onclick="showImage(this)">
+                    <h5>Combo Meals</h5>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="menu-card">
+                    <img src="images/family-style.jpg" alt="Pasta" class="menu-img" data-bs-toggle="modal" data-bs-target="#imgModal" onclick="showImage(this)">
+                    <h5>Family Style</h5>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="menu-card">
+                    <img src="images/breads.jpg" alt="Dessert" class="menu-img" data-bs-toggle="modal" data-bs-target="#imgModal" onclick="showImage(this)">
+                    <h5>Breads</h5>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="menu-card">
+                    <img src="images/cakes.jpg" alt="Dessert" class="menu-img" data-bs-toggle="modal" data-bs-target="#imgModal" onclick="showImage(this)">
+                    <h5>Cakes</h5>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="menu-card">
+                    <img src="images/desserts-drinks.jpg" alt="Dessert" class="menu-img" data-bs-toggle="modal" data-bs-target="#imgModal" onclick="showImage(this)">
+                    <h5>Desserts & Drinks</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Image Zoom Modal -->
+<div class="modal fade" id="imgModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+        <div class="modal-content bg-transparent border-0">
+            <div class="modal-body text-center">
+                <img id="modalImg" class="img-fluid rounded zoom-img">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Image Script -->
+<script>
+    function showImage(img) {
+        document.getElementById("modalImg").src = img.src;
+    }
+</script>
+
+</body>
+</html>
