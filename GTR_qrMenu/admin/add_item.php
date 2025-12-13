@@ -1,10 +1,11 @@
 <?php include '../config.php'; ?>
 
-<form method="POST">
-    <input name="name" placeholder="Name" required>
+<form method="POST" enctype="multipart/form-data">
+
+    <input name="name" placeholder="Food name" required>
+
     <textarea name="description" placeholder="Description"></textarea>
     <input type="number" step="0.01" name="price" placeholder="Price" required>
-    <input name="image" placeholder="Image filename">
     <select name="category_id">
         <?php
         $cats = $conn->query("SELECT * FROM categories");
@@ -13,25 +14,51 @@
         }
         ?>
     </select>
-    <button>Add</button>
+
+    <!-- IMAGE UPLOAD -->
+    <label>Image</label>
+    <input 
+        type="file"
+        name="image"
+        id="imageInput"
+        accept="image/*"
+        required
+    >
+
+    <img id="preview" style="display:none; width:150px; margin-top:10px; border-radius:10px;">
+
+    <button>Add Item</button>
 </form>
+
 
 <?php
 if ($_POST) {
+
+    $price = str_replace(',', '', $_POST['price']);
+
+    // Image upload
+    $imageName = time() . "_" . $_FILES['image']['name'];
+    move_uploaded_file(
+        $_FILES['image']['tmp_name'],
+        "../images/" . $imageName
+    );
+
     $stmt = $conn->prepare(
         "INSERT INTO menu (name, description, price, image, category_id)
          VALUES (?, ?, ?, ?, ?)"
     );
+
     $stmt->bind_param(
         "ssdsi",
         $_POST['name'],
         $_POST['description'],
-        $_POST['price'],
-        $_POST['image'],
+        $price,
+        $imageName,
         $_POST['category_id']
     );
-    $stmt->execute();
 
+    $stmt->execute();
     header("Location: dashboard.php");
 }
 ?>
+
