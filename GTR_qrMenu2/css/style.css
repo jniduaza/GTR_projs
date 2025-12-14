@@ -2,6 +2,12 @@ body {
     font-family: Arial, sans-serif;
 }
 
+/* Font */
+@font-face {
+    font-family: 'Onstage';
+    src: url(fonts/Onstage.ttf); /* format('truetype') */
+}
+
 /* Header */
 .menu-header {
     background: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836") center/cover no-repeat;
