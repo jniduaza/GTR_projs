@@ -5,7 +5,7 @@ body {
 /* Font */
 @font-face {
     font-family: 'Onstage';
-    src: url(fonts/Onstage.ttf); /* format('truetype') */
+    src: url('../fonts/Onstage.ttf') format('truetype');
 }
 
 /* Header */
@@ -14,18 +14,35 @@ body {
     padding: 70px 0;
 }
 
+
+.menu-header h1 {
+    font-family: 'Onstage';
+    font-size: 3rem;
+    color: #99220B;
+}
+
 /* Menu Cards */
 .menu-card {
     text-align: center;
 }
 
 .menu-card h5 {
+    font-family: 'Onstage';
     margin-top: 10px;
     font-weight: 600;
+    color: #99220B;
 }
 
 .menu-card p {
     color: #555;
+}
+
+.menu-card h5 {
+    transition: color 0.3s ease;
+}
+
+.menu-card:hover h5 {
+    color: #ff1100;
 }
 
 /* Images */
@@ -44,16 +61,17 @@ body {
 
 /* Zoom Image */
 .zoom-img {
-    max-height: 90vh;
+    max-height: 80vh;
 }
 
-/* Mobile Optimization */
+/* Screen Size */
 @media (max-width: 576px) {
     .menu-img {
         height: 220px;
     }
 
     .menu-header h1 {
+        font-family: 'Onstage';
         font-size: 2rem;
     }
 }
