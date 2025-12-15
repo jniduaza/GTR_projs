@@ -10,8 +10,15 @@ body {
 
 /* Header */
 .menu-header {
-    background: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836") center/cover no-repeat;
+    background-image: url("../images/menu-banner.png");
+    background-repeat: no-repeat;
+    background-size: contain; 
+    background-position: center;
+    background-color: #ff1100;    
+    min-height: 300px;
     padding: 70px 0;
+    display: flex;
+    align-items: center;
 }
 
 
@@ -19,6 +26,15 @@ body {
     font-family: 'Onstage';
     font-size: 3rem;
     color: #99220B;
+}
+
+/* Menu Section */
+.menu-section .container h5 {
+    font-family: 'Onstage';
+    font-size: rrem;
+    font-weight: 600;
+    color: #99220B;
+    text-align: center;
 }
 
 /* Menu Cards */
@@ -64,7 +80,7 @@ body {
     max-height: 80vh;
 }
 
-/* Screen Size */
+/* Media Query - Repsonsiveness */
 @media (max-width: 576px) {
     .menu-img {
         height: 220px;
@@ -75,3 +91,50 @@ body {
         font-size: 2rem;
     }
 }
+
+@media (max-width: 992px) {
+    .menu-header {
+        aspect-ratio: 16 / 7;
+        background-color: transparent;
+    }
+}
+
+@media (max-width: 576px) {
+    .menu-header {
+        background-size: contain;
+        background-position: center;
+        background-color: transparent;
+        min-height: 150px;
+        padding: 0%;
+    }
+}
+
+
+/* @media (max-width: 992px) {
+    .menu-header {
+        background-size: cover;      fill space better 
+        background-position: center;
+        background-color: transparent;
+        min-height: 260px;
+    }
+}
+
+/* MOBILE 
+@media (max-width: 576px) {
+    .menu-header {
+        background-size: cover;
+        background-position: center;
+        background-color: transparent;
+        min-height: 200px;
+    }
+} */
+
+/* @media (max-width: 576px) {
+    .menu-header {
+        background-size: cover;      fill the header 
+        background-position: center
+        background-color: transparent; remove red background 
+        min-height: 220px;            optional: smaller height 
+        padding: 0;                   optional: tighter look 
+    }
+} */
