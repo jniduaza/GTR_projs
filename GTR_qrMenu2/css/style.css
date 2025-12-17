@@ -72,12 +72,18 @@ body {
 }
 
 .menu-img:hover {
-    transform: scale(1.05);
+    max-width: 100%;
+    max-height: 100%;
+    touch-action: pinch-zoom;
 }
 
 /* Zoom Image */
 .zoom-img {
-    max-height: 80vh;
+    padding: 15px;
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    touch-action: pinch-zoom;
 }
 
 /* Media Query - Repsonsiveness */
@@ -95,7 +101,7 @@ body {
 @media (max-width: 992px) {
     .menu-header {
         aspect-ratio: 16 / 7;
-        background-color: transparent;
+        background-color: #ff1100;
     }
 }
 
@@ -103,38 +109,8 @@ body {
     .menu-header {
         background-size: contain;
         background-position: center;
-        background-color: transparent;
+        background-color: #ff1100;
         min-height: 150px;
         padding: 0%;
     }
 }
-
-
-/* @media (max-width: 992px) {
-    .menu-header {
-        background-size: cover;      fill space better 
-        background-position: center;
-        background-color: transparent;
-        min-height: 260px;
-    }
-}
-
-/* MOBILE 
-@media (max-width: 576px) {
-    .menu-header {
-        background-size: cover;
-        background-position: center;
-        background-color: transparent;
-        min-height: 200px;
-    }
-} */
-
-/* @media (max-width: 576px) {
-    .menu-header {
-        background-size: cover;      fill the header 
-        background-position: center
-        background-color: transparent; remove red background 
-        min-height: 220px;            optional: smaller height 
-        padding: 0;                   optional: tighter look 
-    }
-} */
