@@ -28,20 +28,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>Restaurant Inventory Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h2>Restaurant Inventory Login</h2>
-    <form method="POST">
-        <input name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button>Login</button>
-    </form>
-    <?= $error ?? '' ?>
-</body>
+<div class="login-container">
+    <div class="login-card">
+        <h2>GoodTaste Restaurant</h2>
+        <p class="subtitle">Login to continue</p>
 
+        <form method="POST">
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <?php if (!empty($error)): ?>
+            <div class="error"><?= $error ?></div>
+        <?php endif; ?>
+    </div>
+</div>
+
+</body>
 </html>

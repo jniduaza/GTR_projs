@@ -1,4 +1,205 @@
-body{font-family:Arial;background:#f2f2f2;padding:20px}
-table{background:#fff;border-collapse:collapse}
-td,th{padding:8px;border:1px solid #ccc}
-a{margin-right:10px}
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Center container */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+/* Card */
+.login-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* Title */
+.login-card h2 {
+    color: #b30000;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+/* Inputs */
+.form-group {
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #b30000;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    background: #b30000;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #990000;
+}
+
+/* Error message */
+.error {
+    margin-top: 15px;
+    color: #b30000;
+    font-size: 14px;
+}
+
+
+/* =========================
+   DASHBOARD WITH SIDEBAR
+========================= */
+
+/* TOP BAR */
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #b30000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.profile {
+    font-size: 14px;
+}
+
+.logout-link {
+    color: #fff;
+    margin-left: 15px;
+    text-decoration: underline;
+}
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    left: 0;
+    width: 220px;
+    height: calc(100vh - 60px);
+    background: #ffffff;
+    border-right: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 12px 20px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.sidebar a:hover {
+    background: #ffe5e5;
+}
+
+.sidebar a.active {
+    background: #b30000;
+    color: #fff;
+}
+
+.sidebar a.disabled {
+    color: #aaa;
+    pointer-events: none;
+}
+
+/* MAIN CONTENT */
+.content {
+    margin-top: 40px;
+    margin-left: 220px;
+    padding: 30px;
+}
+
+.content h1 {
+    color: #b30000;
+    margin-bottom: 20px;
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.info-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 6px;
+    border-left: 6px solid #b30000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.info-card h3 {
+    margin-top: 0;
+    color: #b30000;
+}
+
+.info-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+.info-card a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #b30000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.info-card a:hover {
+    text-decoration: underline;
+}
+
+.info-card.disabled {
+    opacity: 0.6;
+}
+
+
