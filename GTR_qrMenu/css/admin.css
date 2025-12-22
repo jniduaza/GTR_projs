@@ -1,14 +1,7 @@
 body {
-    font-family: Arial;
-    padding: 20px;
+    font-size: 14px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 10px;
-    border: 1px solid #ccc;
+.nav-link.active {
+    font-weight: 600;
 }

@@ -22,6 +22,7 @@ header {
     gap: 15px;
 }
 
+/* index.php - Customer View */
 .card {
     position: relative;
     background: white;
@@ -29,29 +30,83 @@ header {
     padding: 10px;
 }
 
-.card img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 8px;
+.card {
+    cursor: pointer;
 }
 
-.price {
-    font-weight: bold;
-    margin-top: 5px;
+.sold-out {
+    opacity: 0.5;
+    pointer-events: none;
 }
 
-.badge {
+.sold-badge {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    background: red;
-    color: white;
-    padding: 5px 8px;
-    font-size: 12px;
-    border-radius: 5px;
+    top: 8px;
+    left: 8px;
 }
 
-.sold {
-    opacity: 0.6;
+.zoomable {
+    max-height: 60vh;
+    object-fit: contain;
+    transition: transform 0.3s ease;
 }
+
+.zoomable:active {
+    transform: scale(1.2);
+}
+
+/* FLOATING HEADER */
+.floating-header {
+    position: fixed;
+    top: -120px; /* hidden */
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 999;
+    transition: top 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.floating-header.show {
+    top: 0;
+}
+
+/* BACK BUTTON */
+.back-btn {
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    padding: 4px 8px;
+}
+
+/* CATEGORY TABS */
+.category-tabs {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.category-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.category-tabs .tab {
+    white-space: nowrap;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    background: #fff;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.category-tabs .tab.active {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+
+
+

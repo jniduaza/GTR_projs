@@ -58,7 +58,7 @@ if ($_POST) {
     );
 
     $stmt->execute();
-    header("Location: dashboard.php");
+    header("Location: admin.php");
 }
 ?>
 
