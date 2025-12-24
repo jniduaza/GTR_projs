@@ -1,55 +1,59 @@
-// ELEMENTS
+// ===== ELEMENTS =====
 const floatingHeader = document.getElementById('floatingHeader');
 const floatingSearch = document.getElementById('floatingSearch');
 const searchInput = document.getElementById('searchInput');
+const menuHeading = document.getElementById('menuHeading');
+const categoryButtons = document.querySelectorAll('.tab');
 const menuItems = document.querySelectorAll('.menu-item');
-
-// BOTH category tab sets (main + floating)
-const categoryTabs = document.querySelectorAll('.category-tabs .tab');
 
 let lastScrollY = 0;
 let currentCategory = 'all';
 
-// SHOW floating header only when scrolling down
+// ===== FLOATING HEADER =====
 window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
+    const y = window.scrollY;
 
-    if (currentScroll > 120 && currentScroll > lastScrollY) {
+    if (y > 120 && y > lastScrollY) {
         floatingHeader.classList.add('show');
-    } else if (currentScroll < 80) {
+    } else if (y < 80) {
         floatingHeader.classList.remove('show');
     }
 
-    lastScrollY = currentScroll;
+    lastScrollY = y;
 });
 
-// SYNC floating search with main search
+// ===== SEARCH SYNC =====
 floatingSearch.addEventListener('input', () => {
     searchInput.value = floatingSearch.value;
     filterItems();
 });
 
-// MAIN search
 searchInput.addEventListener('input', filterItems);
 
-// CATEGORY TABS (works for BOTH headers)
-categoryTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        currentCategory = tab.dataset.category;
+// ===== CATEGORY TABS =====
+categoryButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        currentCategory = btn.dataset.category;
 
-        // Set active state on ALL matching tabs
-        categoryTabs.forEach(t => {
-            t.classList.toggle(
+        // Sync active state
+        categoryButtons.forEach(b => {
+            b.classList.toggle(
                 'active',
-                t.dataset.category === currentCategory
+                b.dataset.category === currentCategory
             );
         });
+
+        // Update heading
+        menuHeading.textContent =
+            currentCategory === 'all'
+                ? 'OUR MENU'
+                : btn.textContent.trim().toUpperCase();
 
         filterItems();
     });
 });
 
-// FILTER LOGIC (single source of truth)
+// ===== FILTER LOGIC =====
 function filterItems() {
     const term = searchInput.value.toLowerCase();
 
@@ -60,23 +64,23 @@ function filterItems() {
             item.dataset.category === currentCategory;
 
         item.style.display =
-            matchName && matchCategory ? 'block' : 'none';
+            matchName && matchCategory ? '' : 'none';
     });
 }
 
-// MODAL
+// ===== MODAL =====
 function openModal(card) {
-    document.getElementById('modalImage').src = card.dataset.image;
+    const parent = card.closest('.menu-item');
+
+    document.getElementById('modalImage').src = parent.dataset.image;
     document.getElementById('modalTitle').innerText =
         card.querySelector('.card-title').innerText;
     document.getElementById('modalDescription').innerText =
-        card.dataset.description;
+        parent.dataset.description;
     document.getElementById('modalPrice').innerText =
-        '₱' + card.dataset.price;
+        '₱' + parent.dataset.price;
 
     new bootstrap.Modal(
         document.getElementById('itemModal')
     ).show();
 }
-
-

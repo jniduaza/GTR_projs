@@ -1,15 +1,24 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f7f7f7;
+    background: #f9fafb;
+    position: relative;
 }
 
-header {
-    background: #00b14f;
-    color: white;
-    padding: 15px;
-    text-align: center;
-    font-size: 20px;
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(0deg,
+            rgba(192, 27, 24, 1) 0%,
+            rgba(255, 255, 255, 1) 70%);
+    z-index: -1;
+}
+
+/* ===== FONT ===== */
+@font-face {
+    font-family: 'Revue';
+    src: url('../fonts/REVUEN.TTF') format('truetype');
 }
 
 .container {
@@ -22,7 +31,127 @@ header {
     gap: 15px;
 }
 
-/* index.php - Customer View */
+/* ===== INDEX.PHP ===== */
+/* Header/Banner: Found at the top page */
+.hero-banner {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+    color: #fff;
+}
+
+.hero-banner .bg {
+    animation: slide 6s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg,
+            #fd1b0d 50%,
+            #fc514e 50%);
+    position: absolute;
+    inset: 0;
+    left: -50%;
+    right: -50%;
+    opacity: 0.6;
+}
+
+.hero-banner .bg2 {
+    animation-direction: alternate-reverse;
+    animation-duration: 8s;
+    opacity: 0.5;
+}
+
+.hero-banner .bg3 {
+    animation-duration: 10s;
+    opacity: 0.4;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 2%);
+    z-index: 1;
+}
+
+.hero-banner .container {
+    z-index: 2;
+}
+
+.hero-logo {
+    max-width: 90px;
+    max-height: 90px;
+}
+
+.hero-title {
+    font-family: 'Revue';
+    font-size: 1.6rem;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    margin: 0;
+    opacity: 0.85;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(-25%);
+    }
+
+    100% {
+        transform: translateX(25%);
+    }
+}
+
+@media (min-width: 768px) {
+
+    /* Media Query - Tablet */
+    .hero-logo {
+        max-width: 120px;
+        max-height: 120px;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+
+    /* Media Query - Mobile */
+    .hero-banner {
+        height: 160px;
+    }
+
+    .hero-title {
+        font-size: 1.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .hero-logo {
+        max-width: 100px;
+        max-height: 100px;
+    }
+}
+
+/* Menu Heading */
+#menuHeading {
+    font-family: 'Revue', sans-serif;
+    color: #c01b18;
+    letter-spacing: 1px;
+    text-align: center;
+    font-size: 2rem;
+    text-shadow: 2px 2px #ffffff;
+}
+
+@media (max-width: 768px) {
+    #menuHeading {
+        font-size: 1.8rem;
+    }
+}
+
+
+/* Menu Items */
 .card {
     position: relative;
     background: white;
@@ -55,23 +184,23 @@ header {
     transform: scale(1.2);
 }
 
-/* FLOATING HEADER */
+/* Floating Header: Consists of Search and Categories and shown when user scrolls down */
 .floating-header {
     position: fixed;
-    top: -120px; /* hidden */
+    top: -120px;
+    /* hidden */
     left: 0;
     right: 0;
     background: #fff;
     z-index: 999;
     transition: top 0.3s ease;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .floating-header.show {
     top: 0;
 }
 
-/* BACK BUTTON */
 .back-btn {
     border: none;
     background: transparent;
@@ -79,7 +208,6 @@ header {
     padding: 4px 8px;
 }
 
-/* CATEGORY TABS */
 .category-tabs {
     display: flex;
     gap: 10px;
@@ -99,14 +227,12 @@ header {
     background: #fff;
     font-size: 14px;
     flex-shrink: 0;
+    font-family: 'Revue';
+    color: #c01b18;
 }
 
 .category-tabs .tab.active {
-    background: #000;
+    background: #fd1b0d;
     color: #fff;
-    border-color: #000;
+    border-color: #c01b18;
 }
-
-
-
-

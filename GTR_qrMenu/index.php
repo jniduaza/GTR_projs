@@ -35,10 +35,35 @@
         </div>
     </div>
 
-    <!-- Header/Banner upon landing (Customer view) -->
-    <header class="bg-dark text-white text-center py-3">
-        <h4 class="mb-0">GoodTaste Menu</h4>
+    <!-- Banner/Header -->
+    <header class="hero-banner">
+        <!-- Animated background layers -->
+        <div class="bg bg1"></div>
+        <div class="bg bg2"></div>
+        <div class="bg bg3"></div>
+
+        <!-- Dark overlay -->
+        <div class="hero-overlay"></div>
+
+        <!-- Banner content -->
+        <div class="container h-100 position-relative">
+            <div class="row h-100 align-items-center g-2">
+
+                <!-- Logo -->
+                <div class="col-4 col-md-3 text-center">
+                    <img src="images/gt-logo.png" alt="GoodTaste Logo" class="hero-logo">
+                </div>
+
+                <!-- Restaurant Name -->
+                <div class="col-8 col-md-9 d-flex flex-column justify-content-center text-center">
+                    <h1 class="hero-title mb-0">GOODTASTE RESTAURANT</h1>
+                    <p class="hero-subtitle ">Serving good food and good service.</p>
+                </div>
+
+            </div>
+        </div>
     </header>
+
 
     <!-- Fixed Search and Category (Shown upon landing on the page) -->
     <div class="container my-3">
@@ -52,6 +77,9 @@
             }
             ?>
         </div>
+
+        <h5 id="menuHeading" class="fw-bold mb-3">OUR MENU</h5>
+
 
         <!-- Menu Grid: shows menu items -->
         <div class="row g-3" id="menuGrid">
@@ -87,7 +115,7 @@
         </div>
     </div>
 
-    <!-- Modal:  -->
+    <!-- Modal: -->
     <div class="modal fade" id="itemModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
             <div class="modal-content">
@@ -106,7 +134,7 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- Menu JS -->
     <script src="js/menu.js"></script>
 </body>
