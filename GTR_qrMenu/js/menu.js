@@ -84,3 +84,64 @@ function openModal(card) {
         document.getElementById('itemModal')
     ).show();
 }
+
+// MOdal image
+let scale = 1;
+let lastTap = 0;
+let startX = 0;
+let startY = 0;
+let translateX = 0;
+let translateY = 0;
+
+function openPhotoViewer() {
+    const img = document.getElementById('photoViewer');
+    img.src = document.getElementById('modalImage').src;
+
+    resetZoom();
+
+    new bootstrap.Modal(
+        document.getElementById('photoModal')
+    ).show();
+}
+
+function resetZoom() {
+    scale = 1;
+    translateX = 0;
+    translateY = 0;
+    applyTransform();
+}
+
+function applyTransform() {
+    const img = document.getElementById('photoViewer');
+    img.style.transform =
+        `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+}
+
+/* DOUBLE TAP ZOOM */
+document.getElementById('photoViewer').addEventListener('touchend', e => {
+    const now = Date.now();
+    if (now - lastTap < 300) {
+        scale = scale > 1 ? 1 : 2;
+        translateX = 0;
+        translateY = 0;
+        applyTransform();
+    }
+    lastTap = now;
+});
+
+/* DRAG IMAGE */
+document.getElementById('photoViewer').addEventListener('touchstart', e => {
+    if (scale === 1) return;
+    const t = e.touches[0];
+    startX = t.clientX - translateX;
+    startY = t.clientY - translateY;
+});
+
+document.getElementById('photoViewer').addEventListener('touchmove', e => {
+    if (scale === 1) return;
+    const t = e.touches[0];
+    translateX = t.clientX - startX;
+    translateY = t.clientY - startY;
+    applyTransform();
+});
+

@@ -115,18 +115,40 @@
         </div>
     </div>
 
-    <!-- Modal: -->
+    <!-- Modal -->
     <div class="modal fade" id="itemModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <div class="modal-body p-0">
-                    <img id="modalImage" class="w-100 zoomable">
-                    <div class="p-3">
-                        <h5 id="modalTitle"></h5>
-                        <p id="modalDescription" class="text-muted"></p>
-                        <h6 id="modalPrice"></h6>
-                    </div>
 
+                <!-- HEADER WITH CLOSE BUTTON -->
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <!-- BODY -->
+                <div class="modal-body pt-0">
+                    <img id="modalImage" class="w-100 zoomable rounded mb-3 menu-photo" onclick="openPhotoViewer()">
+                    <h5 id="modalTitle"></h5>
+                    <p id="modalDescription" class="text-muted"></p>
+                    <h6 id="modalPrice"></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHOTO VIEWER MODAL -->
+    <div class="modal fade" id="photoModal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content bg-black">
+
+                <!-- CLOSE BUTTON -->
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- IMAGE -->
+                <div class="modal-body p-0 d-flex justify-content-center align-items-center">
+                    <img id="photoViewer" class="photo-viewer">
                 </div>
             </div>
         </div>
@@ -138,5 +160,4 @@
     <!-- Menu JS -->
     <script src="js/menu.js"></script>
 </body>
-
 </html>

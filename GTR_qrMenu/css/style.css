@@ -184,6 +184,16 @@ body::before {
     transform: scale(1.2);
 }
 
+/* PHOTO VIEWER */
+.photo-viewer {
+    max-width: 100%;
+    max-height: 100vh;
+    touch-action: none;
+    cursor: grab;
+    transition: transform 0.2s ease;
+}
+
+
 /* Floating Header: Consists of Search and Categories and shown when user scrolls down */
 .floating-header {
     position: fixed;
