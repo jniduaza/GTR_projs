@@ -27,9 +27,12 @@
             <!-- SIDEBAR -->
             <aside class="col-md-3 col-lg-2 bg-white border-end min-vh-100 p-3">
                 <h6 class="text-muted">ADMIN</h6>
-                <ul class="nav flex-column">
+                <ul class="nav flex-column gap-2">
                     <li class="nav-item">
                         <a class="nav-link active" href="admin.php">📋 Menu Items</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#categoriesSection">🗂 Categories</a>
                     </li>
                     <li class="nav-item">
                         <button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#addItemModal">
@@ -37,6 +40,7 @@
                         </button>
                     </li>
                 </ul>
+
             </aside>
 
             <!-- ADD ITEM MODAL -->
@@ -109,13 +113,69 @@
                 </div>
             </div>
 
+            <!-- ADD CATEGORY MODAL -->
+            <div class="modal fade" id="addCategoryModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+
+                        <form id="addCategoryForm">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Add Category</h5>
+                                <button class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <input type="text" name="name" class="form-control" placeholder="Category name"
+                                    required>
+                                <div id="addCatAlert" class="alert d-none mt-3"></div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-dark">Save</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- EDIT CATEGORY MODAL -->
+            <div class="modal fade" id="editCategoryModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+
+                        <form id="editCategoryForm">
+                            <input type="hidden" name="id" id="editCatId">
+
+                            <div class="modal-header">
+                                <h5 class="modal-title">Edit Category</h5>
+                                <button class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <input type="text" name="name" id="editCatName" class="form-control" required>
+                                <div id="editCatAlert" class="alert d-none mt-3"></div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-dark">Update</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+
+
 
             <!-- MAIN CONTENT -->
             <main class="col-md-9 col-lg-10 p-4">
 
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="mb-0">Menu Items</h4>
-                    <a href="add_item.php" class="btn btn-dark btn-sm">➕ Add New Item</a>
                 </div>
 
                 <!-- MENU TABLE -->
@@ -157,8 +217,7 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td class="text-end">
-                                                <a href="edit_item.php?id=<?= $row['id'] ?>"
-                                                    class="btn btn-sm btn-outline-dark">
+                                                <a class="btn btn-sm btn-outline-dark">
                                                     Edit
                                                 </a>
                                             </td>
@@ -172,10 +231,55 @@
                 </div>
 
             </main>
+            <!--  -->
+            <hr class="my-5" id="categoriesSection">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="mb-0">Categories</h4>
+                <button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                    ➕ Add Category
+                </button>
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-body p-0">
+                    <table class="table mb-0 align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Name</th>
+                                <th class="text-end">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $cats = $conn->query("SELECT * FROM categories ORDER BY name ASC");
+                            while ($cat = $cats->fetch_assoc()):
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?= htmlspecialchars($cat['name']) ?>
+                                    </td>
+                                    <td class="text-end">
+                                        <button class="btn btn-sm btn-outline-dark"
+                                            onclick="openEditCategory(<?= $cat['id'] ?>, '<?= htmlspecialchars($cat['name']) ?>')">
+                                            Edit
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger"
+                                            onclick="deleteCategory(<?= $cat['id'] ?>)">
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <script>
+    <!-- <script>
         document.getElementById('addItemForm').addEventListener('submit', function (e) {
             e.preventDefault();
 
@@ -209,7 +313,50 @@
                     alertBox.classList.remove('d-none');
                 });
         });
+    </script> -->
+    <script>
+        const addForm = document.getElementById('addCategoryForm');
+        const editForm = document.getElementById('editCategoryForm');
+
+        addForm?.addEventListener('submit', e => {
+            e.preventDefault();
+            fetch('category_ajax.php', {
+                method: 'POST',
+                body: new FormData(addForm).append('action', 'add')
+            }).then(() => location.reload());
+        });
+
+        function openEditCategory(id, name) {
+            document.getElementById('editCatId').value = id;
+            document.getElementById('editCatName').value = name;
+            new bootstrap.Modal('#editCategoryModal').show();
+        }
+
+        editForm?.addEventListener('submit', e => {
+            e.preventDefault();
+            const fd = new FormData(editForm);
+            fd.append('action', 'edit');
+
+            fetch('category_ajax.php', { method: 'POST', body: fd })
+                .then(() => location.reload());
+        });
+
+        function deleteCategory(id) {
+            if (!confirm('Delete this category?')) return;
+
+            const fd = new FormData();
+            fd.append('action', 'delete');
+            fd.append('id', id);
+
+            fetch('category_ajax.php', { method: 'POST', body: fd })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'error') alert(data.message);
+                    else location.reload();
+                });
+        }
     </script>
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
